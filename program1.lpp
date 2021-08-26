@@ -1,0 +1,67 @@
+%{
+using std::string;
+using std::cerr;
+
+#include "program1.hpp"
+/*
+ * the noyywrap is how the scanner handles end of file, now it will just
+ * quit. 
+ * get the line numbers from the scanner because of yylineno
+ */
+%}
+%option outfile="program1_lex.cpp"
+%option noyywrap
+%option yylineno
+
+/*
+* DO NOT define 945  different regular expressions. You do NOT need most of
+* them. Notice that I put them in as simple rules. Eventually you will need
+* to separate ALL those fancy expressions into single simple rules anyway so
+* why not start now. 
+*/
+
+%%
+quit            {
+                  return 0;
+                }
+Quit            {
+                  return 0;
+                }
+QUIT            {
+                  return 0;
+                }
+  /*
+   * Words
+   */
+[a-zA-Z]+       {
+                  value="Word: ";
+                  return 1;
+                }
+  /*
+   * Numbers. 
+   */
+[0-9]+          {
+                  value="Numb: ";
+                  return 1;
+                }
+  /*
+   * Whitespace: tab, space, newline.
+   */
+\t              { 
+                  // do nothing ignore it
+                }
+
+\n              {
+                  // do nothing ignore it
+                }
+" "+            { 
+                  // do nothing ignore it
+                }
+  /*
+   * Matches anything not matched. MUST BE LAST RULE.
+   */
+.               {
+                  value="Unk : ";
+                  return 1;
+                }
+%%
