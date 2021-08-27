@@ -57,6 +57,37 @@ QUIT            {
 " "+            { 
                   // do nothing ignore it
                 }
+
+"=="            {
+                    value="compare_op: ";
+                    return 1;
+                }
+
+">"             {
+                    value="compare_op: ";
+                    return 1;
+                }
+
+"<"             {
+                    value="compare_op: ";
+                    return 1;
+                }
+
+">="           {
+                    value="compare_op: ";
+                    return 1;
+                }
+
+"<="            {
+                    value="compare_op: ";
+                    return 1;
+                }
+
+"!="            {
+                    value="compare_op: ";
+                    return 1;
+                }
+
   /*
    * Matches anything not matched. MUST BE LAST RULE.
    */
