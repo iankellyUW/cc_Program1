@@ -31,18 +31,11 @@ QUIT            {
                   return 0;
                 }
   /*
-   * Words
-   */
-[a-zA-Z]+       {
-                  value="Word: ";
-                  return 1;
-                }
-  /*
    * Numbers. 
    */
 [0-9]+          {
                   value="Numb: ";
-                  return 1;
+                  return 8;
                 }
   /*
    * Whitespace: tab, space, newline.
@@ -52,7 +45,7 @@ QUIT            {
                 }
 
 \n              {
-                  // do nothing ignore it
+                  return 11;
                 }
 " "+            { 
                   // do nothing ignore it
@@ -87,6 +80,76 @@ QUIT            {
                     value="compare_op: ";
                     return 1;
                 }
+
+"||"            {
+                    return 2;
+                }
+
+"&&"            {
+                    return 2;
+                }
+"+"             {
+                    return 3;
+                }
+"-"             {
+                    return 3;
+                }
+"*"             {
+                    return 3;
+                }
+"/"             {
+                    return 3;
+                }
+[{}]            {
+                    return 4;
+                }
+[[]             {
+                    return 4;
+                }
+[]]            {
+                    return 4;
+                }
+[()]            {
+                    return 4;
+                }
+
+"\."            {
+                    return 5;
+                }
+","             {
+                    return 5;
+                }
+";"             {
+                    return 5;
+                }
+
+this            {
+                    return 6;
+                }
+if              {
+                    return 6;
+                }
+else            {
+                    return 6;
+                }
+while           {
+                    return 6;
+                }
+
+(_[A-Z]*[a-z]*[0-9]*)+  {
+                    return 7;
+                }
+
+[0-9]+(\.)[0-9]+  {
+                    return 9;
+                }
+[0-9]+\.[0-9]+[Ee]\-?\+?[0-9]+ {
+                    return 9;
+                }
+[0-9]+[Ee]\-?\+?[0-9]+ {
+                    return 9;
+                }
+
 
   /*
    * Matches anything not matched. MUST BE LAST RULE.

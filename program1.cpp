@@ -18,15 +18,15 @@ string value;
 int main()
 {
 
-    FlexLexer *myScanner = new yyFlexLexer;
+    FlexLexer *myScanner = new yyFlexLexer();
     int rtn;
 
     //   any   n e e d e d   i n i t i a l i z a t i o n   c o d e
     while((rtn=myScanner->yylex()) != 0) {
         //   l o o p   c o d e   g o e s   h e r e
-        cout << myScanner->lineno() << "  " << std::setw(3) << value ;
-        cout << myScanner->YYText() << endl;
-        cout << myScanner->YYLeng() << endl;
+        cout << "rtn: " << std::setw(8) << rtn << endl;
+        //cout << myScanner->YYText() << endl;
+        //cout << myScanner->YYLeng() << endl;
     }
     // more   c o d e   i f   n e e d e d
     return 0;
