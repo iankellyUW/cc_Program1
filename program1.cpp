@@ -21,6 +21,8 @@ int main()
     FlexLexer *myScanner = new yyFlexLexer();
     int rtn;
 
+    cout << "Line" << std::setw(8) << "Column" << std::setw(8) << "Type" << std::setw(8) << "Length" << std::setw(8) << "Value" << endl;
+
     //   any   n e e d e d   i n i t i a l i z a t i o n   c o d e
     while((rtn=myScanner->yylex()) != 0) {
         //   l o o p   c o d e   g o e s   h e r e
